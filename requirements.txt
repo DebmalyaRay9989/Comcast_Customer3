@@ -1,0 +1,16 @@
+streamlit
+numpy>=1.13.3
+scikit-learn==0.20.3
+matplotlib>=1.4.3
+pandas>=0.19
+unidecode
+wordcloud
+scipy
+spacy==2.2.0
+https://github.com/explosion/spacy-models/releases/download/en_core_web_sm-2.2.0/en_core_web_sm-2.2.0.tar.gz#egg=en_core_web_sm
+joblib
+xgboost
+plotly
+nltk
+
+

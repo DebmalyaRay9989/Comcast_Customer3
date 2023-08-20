@@ -1,0 +1,17 @@
+{
+	"folders": [
+		{
+			"path": "../../../../ML_OOP/mlproject_airbnb"
+		},
+		{
+			"path": "../../../../ML_OOP/mlproject_telecom"
+		},
+		{
+			"path": "../../../../ML_OOP/Text-Summarization-NLP-Project-main"
+		},
+		{
+			"path": "../.."
+		}
+	],
+	"settings": {}
+}

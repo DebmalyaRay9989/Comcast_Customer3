@@ -1,6 +1,6 @@
 
 streamlit
-numpy>=1.13.3
+numpy==1.19.5
 scikit-learn==0.20.3
 matplotlib>=1.4.3
 pandas>=0.19

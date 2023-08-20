@@ -12,7 +12,7 @@ from wordcloud import WordCloud
 
 
 # load Vectorizer
-complaints_vectorizer = open("models/tfidf_vect.pickle","rb")
+complaints_vectorizer = open("models/tfidf_vect.joblib","rb")
 complaints_cv = joblib.load(complaints_vectorizer)
 
 def load_prediction_models(model_file):
@@ -82,11 +82,11 @@ def main():
 			st.text("Original Text:\n{}".format(complaints_text))
 			vect_text = complaints_cv.transform([complaints_text]).toarray()
 			if model_choice == 'Decision Tree':
-				predictor = load_prediction_models("models/dtcpred.pickle")
+				predictor = load_prediction_models("models/dtcpred.joblib")
 				prediction = predictor.predict(vect_text)
 				st.write(prediction)
 			elif model_choice == 'GradientBoost':
-				predictor = load_prediction_models("models/gbcpred.pickle")
+				predictor = load_prediction_models("models/gbcpred.joblib")
 				prediction = predictor.predict(vect_text)
 				st.write(prediction)
 

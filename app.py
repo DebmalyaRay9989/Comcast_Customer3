@@ -1,6 +1,7 @@
 
 import streamlit as st
 import joblib,os
+import scipy
 import spacy
 import pandas as pd
 nlp = spacy.load("en_core_web_sm")

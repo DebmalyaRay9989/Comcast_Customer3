@@ -1,3 +1,4 @@
+python==2.9.3
 streamlit
 numpy>=1.13.3
 scikit-learn==0.20.3

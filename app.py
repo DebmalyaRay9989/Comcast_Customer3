@@ -118,14 +118,6 @@ def main():
 
 			st.json(result)
 
-		if st.button("Tabulize"):
-			docx = nlp(raw_text)
-			c_tokens = [token.text for token in docx ]
-			c_pos = [token.pos_ for token in docx ]
-
-			new_df = pd.DataFrame(zip(c_tokens, c_pos),columns=['Tokens','POS'])
-			st.dataframe(new_df)
-
 
 		if st.checkbox("WordCloud"):
 			c_text = raw_text

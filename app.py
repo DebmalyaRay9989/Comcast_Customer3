@@ -1,4 +1,5 @@
 
+
 import streamlit as st
 import joblib,os
 from joblib import dump, load
@@ -74,7 +75,7 @@ def main():
 	if choice == 'Prediction':
 		st.info("Prediction with ML")
 		complaints_text = st.text_area("Enter Complaints Here","Type Here")
-		all_ml_models = ["Decision Tree", "GradientBoost"]
+		all_ml_models = ["Decision Tree", "GradientBoost", "RandomForest", "Adaboost"]
 		model_choice = st.selectbox("Select Model",all_ml_models)
 
 		prediction_labels = {'Closed': 0, 'Open': 1, 'Pending': 2, 'Solved': 3}
@@ -89,6 +90,14 @@ def main():
 				predictor = load_prediction_models("models/gbcpred.joblib")
 				prediction = predictor.predict(vect_text)
 				st.write(prediction)
+			elif model_choice == 'RandomForest':
+				predictor = load_prediction_models("models/rbcpred.joblib")
+				prediction = predictor.predict(vect_text)
+				st.write(prediction)
+			elif model_choice == 'Adaboost':
+				predictor = load_prediction_models("models/adacpred.joblib")
+				prediction = predictor.predict(vect_text)
+				st.write(prediction)
 
 			final_result = get_key(prediction,prediction_labels)
 			st.success("Complaints Categorized as: {}".format(final_result))
@@ -96,7 +105,7 @@ def main():
 	elif choice == 'NLP':
 		st.info("Natural Language Processing of Text")
 		raw_text = st.text_area("Enter Customer Complaints Here","Type Here")
-		nlp_task = ["Tokenization","Lemmatization","Named Entity Recognition(NER)","Parts-of-Speech(POS) Tags"]
+		nlp_task = ["Tokenization", "Parts-of-Speech(POS) Tags"]
 		task_choice = st.selectbox("Choose NLP Task",nlp_task)
 		if st.button("Analyze"):
 			st.info("Original Text:\n{}".format(raw_text))
@@ -104,10 +113,6 @@ def main():
 			docx = nlp(raw_text)
 			if task_choice == 'Tokenization':
 				result = [token.text for token in docx ]
-			elif task_choice == 'Lemmatization':
-				result = ["'Token':{},'Lemma':{}".format(token.text,token.lemma_) for token in docx]
-			elif task_choice == 'Named Entity Recognition(NER)':
-				result = [(entity.text,entity.label_)for entity in docx.ents]
 			elif task_choice == 'Parts-of-Speech(POS) Tags':
 				result = ["'Token':{},'POS':{},'Dependency':{}".format(word.text,word.tag_,word.dep_) for word in docx]
 
@@ -116,10 +121,9 @@ def main():
 		if st.button("Tabulize"):
 			docx = nlp(raw_text)
 			c_tokens = [token.text for token in docx ]
-			c_lemma = [token.lemma_ for token in docx ]
 			c_pos = [token.pos_ for token in docx ]
 
-			new_df = pd.DataFrame(zip(c_tokens,c_lemma,c_pos),columns=['Tokens','Lemma','POS'])
+			new_df = pd.DataFrame(zip(c_tokens, c_pos),columns=['Tokens','POS'])
 			st.dataframe(new_df)
 
 
@@ -130,6 +134,7 @@ def main():
 			plt.axis("off")
 			st.set_option('deprecation.showPyplotGlobalUse', False)
 			st.pyplot()
+
 
 	else:
 		st.write("")
@@ -157,4 +162,5 @@ def main():
 
 if __name__ == '__main__':
 	main()
+
 

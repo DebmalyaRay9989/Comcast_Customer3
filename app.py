@@ -1,6 +1,7 @@
 
 import streamlit as st
 import joblib,os
+from joblib import dump, load
 import scipy
 import spacy
 import pandas as pd
@@ -12,12 +13,11 @@ from wordcloud import WordCloud
 
 
 # load Vectorizer
-complaints_vectorizer = open("models/tfidf_vect.joblib","rb")
-complaints_cv = joblib.load(complaints_vectorizer)
+complaints_cv = load("models/tfidf_vect.joblib")
 
 def load_prediction_models(model_file):
 
-	loaded_model = joblib.load(open(os.path.join(model_file),"rb"))
+	loaded_model = load(model_file)
 	return loaded_model
 
 # Get the Keys

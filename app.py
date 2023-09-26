@@ -32,8 +32,8 @@ def get_key(val,my_dict):
 
 def main():
 
-	"""Telecom Complaints Classifier"""
-	st.title("Comcast Telecom Complaints App")
+	"""Telecom Complaints Monitoring Classifier"""
+	st.title("Telecom Complaints Monitoring App")
 	
 	# Layout Templates
 	html_temp = """
